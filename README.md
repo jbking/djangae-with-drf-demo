@@ -7,6 +7,7 @@ To get started:
 
  - Clone this repo (don't forget to change the origin to your own repo!)
  - Run `./install_deps` (this will pip install requirements, and download the App Engine SDK)
+ - Run `./change_scaffold_app_name my_new_app_name` to rename the 'scaffold' app (and all references to it)
  - `python manage.py checksecure --settings=scaffold.settings_live`
  - `python manage.py runserver`
 
