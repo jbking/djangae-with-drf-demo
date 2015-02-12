@@ -74,4 +74,6 @@ if __name__ == "__main__":
             os.remove(path)
 
     print("Running pip...")
-    subprocess.check_output(["pip", "install", "-r", REQUIREMENTS_FILE, "-t", TARGET_DIR, "-I"])
+    args = ["pip", "install", "-r", REQUIREMENTS_FILE, "-t", TARGET_DIR, "-I"]
+    p = subprocess.Popen(args)
+    p.wait()
