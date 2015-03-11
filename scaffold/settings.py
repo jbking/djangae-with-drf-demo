@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'csp',
     'cspreports',
     'djangae.contrib.gauth',
+    'djangae.contrib.security',
     'djangae', # Djangae should be after Django core/contrib things
 )
 
