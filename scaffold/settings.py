@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 from djangae.settings_base import * #Set up some AppEngine specific stuff
+from django.core.urlresolvers import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -38,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'djangosecure',
     'csp',
+    'cspreports',
     'djangae.contrib.gauth',
     'djangae', # Djangae should be after Django core/contrib things
 )
@@ -81,6 +83,12 @@ SECURE_CHECKS = [
     "djangosecure.check.djangosecure.check_ssl_redirect",
     "scaffold.settings.check_session_csrf_enabled"
 ]
+
+CSP_REPORT_URI = reverse_lazy('report_csp')
+CSP_REPORTS_LOG = True
+CSP_REPORTS_LOG_LEVEL = 'warning'
+CSP_REPORTS_SAVE = True
+CSP_REPORTS_EMAIL_ADMINS = False
 
 ROOT_URLCONF = 'scaffold.urls'
 
