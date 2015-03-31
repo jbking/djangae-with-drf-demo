@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 from djangae.settings_base import * #Set up some AppEngine specific stuff
+from django.core.urlresolvers import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -38,7 +39,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'djangosecure',
     'csp',
+    'cspreports',
     'djangae.contrib.gauth',
+    'djangae.contrib.security',
     'djangae', # Djangae should be after Django core/contrib things
 )
 
@@ -46,13 +49,47 @@ MIDDLEWARE_CLASSES = (
     'djangae.contrib.security.middleware.AppEngineSecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'djangae.contrib.gauth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'csp.middleware.CSPMiddleware',
+    'session_csrf.CsrfMiddleware',
     'djangosecure.middleware.SecurityMiddleware',
 )
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    "session_csrf.context_processor"
+)
+
+def check_session_csrf_enabled():
+    if "session_csrf.CsrfMiddleware" not in MIDDLEWARE_CLASSES:
+        return [ "SESSION_CSRF_DISABLED"]
+
+    return []
+check_session_csrf_enabled.messages = { "SESSION_CSRF_DISABLED" : "Please add 'session_csrf.CsrfMiddleware' to MIDDLEWARE_CLASSES" }
+
+SECURE_CHECKS = [
+    "djangosecure.check.sessions.check_session_cookie_secure",
+    "djangosecure.check.sessions.check_session_cookie_httponly",
+    "djangosecure.check.djangosecure.check_security_middleware",
+    "djangosecure.check.djangosecure.check_sts",
+    "djangosecure.check.djangosecure.check_frame_deny",
+    "djangosecure.check.djangosecure.check_ssl_redirect",
+    "scaffold.settings.check_session_csrf_enabled"
+]
+
+CSP_REPORT_URI = reverse_lazy('report_csp')
+CSP_REPORTS_LOG = True
+CSP_REPORTS_LOG_LEVEL = 'warning'
+CSP_REPORTS_SAVE = True
+CSP_REPORTS_EMAIL_ADMINS = False
 
 ROOT_URLCONF = 'scaffold.urls'
 
