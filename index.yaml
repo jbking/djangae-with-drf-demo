@@ -22,3 +22,13 @@ indexes:
   - name: user_id
   - name: action_time
     direction: desc
+
+- kind: django_content_type
+  properties:
+  - name: app_label
+  - name: name
+
+- kind: django_migrations
+  properties:
+  - name: app
+  - name: name
