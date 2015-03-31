@@ -67,13 +67,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "session_csrf.context_processor"
 )
 
-def check_session_csrf_enabled():
-    if "session_csrf.CsrfMiddleware" not in MIDDLEWARE_CLASSES:
-        return [ "SESSION_CSRF_DISABLED"]
-
-    return []
-check_session_csrf_enabled.messages = { "SESSION_CSRF_DISABLED" : "Please add 'session_csrf.CsrfMiddleware' to MIDDLEWARE_CLASSES" }
-
 SECURE_CHECKS = [
     "djangosecure.check.sessions.check_session_cookie_secure",
     "djangosecure.check.sessions.check_session_cookie_httponly",
@@ -81,7 +74,8 @@ SECURE_CHECKS = [
     "djangosecure.check.djangosecure.check_sts",
     "djangosecure.check.djangosecure.check_frame_deny",
     "djangosecure.check.djangosecure.check_ssl_redirect",
-    "scaffold.settings.check_session_csrf_enabled"
+    "scaffold.checks.check_session_csrf_enabled",
+    "scaffold.checks.check_csp_is_not_report_only"
 ]
 
 CSP_REPORT_URI = reverse_lazy('report_csp')
