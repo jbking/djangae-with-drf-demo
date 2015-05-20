@@ -31,14 +31,15 @@ DEPRECATED_SDK_REPO = "https://storage.googleapis.com/appengine-sdks/deprecated/
 
 if __name__ == "__main__":
     #Make sure the user has everything they need
+    where = 'which'
     if platform.system() == 'Windows':
-        for command in REQUIREMENTS:
-            if not subprocess.check_output(["where", command]).strip():
-                raise RuntimeError("You must install the '%s' command" % command)
-    else:
-        for command in REQUIREMENTS:
-            if not subprocess.check_output(["which", command]).strip():
-                raise RuntimeError("You must install the '%s' command" % command)
+        where = 'where'
+
+    for command in REQUIREMENTS:
+        try:
+            subprocess.check_output([where, command])
+        except subprocess.CalledProcessError:
+            raise RuntimeError("You must install the '%s' command" % command)
 
     if not os.path.exists(TARGET_DIR):
         print('Creating `sitepackages` directory for dependencies...')
