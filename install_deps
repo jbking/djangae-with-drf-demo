@@ -20,7 +20,7 @@ TARGET_DIR = os.path.join(PROJECT_DIR, "sitepackages")
 
 APPENGINE_TARGET_DIR = os.path.join(TARGET_DIR, "google_appengine")
 
-APPENGINE_SDK_VERSION = "1.9.19"
+APPENGINE_SDK_VERSION = "1.9.20"
 APPENGINE_SDK_FILENAME = "google_appengine_%s.zip" % APPENGINE_SDK_VERSION
 
 # Google move versions from 'featured' to 'deprecated' when they bring
