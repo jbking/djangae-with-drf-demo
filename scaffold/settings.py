@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'cspreports',
     'djangae.contrib.gauth.datastore',
     'djangae.contrib.security',
+    'djangae.contrib.uniquetool',
 )
 
 MIDDLEWARE_CLASSES = (
