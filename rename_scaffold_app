@@ -1,0 +1,7 @@
+if [ "$#" -ne 1 ]; then
+    echo "Please supply a single argument of the new app name"
+    exit 1
+fi
+
+find . -path ./sitepackages -prune -o \( -name '*.py' -o -name 'app.yaml' \) -print -exec sed -i '' "s/scaffold/$1/g" {} \;
+mv ./scaffold $1
