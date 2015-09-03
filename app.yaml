@@ -32,4 +32,5 @@ skip_files:
     - requirements.txt
     - sitepackages/google_appengine*
     - \.storage.*
+    - \.git
     - (.*)\.pyc
