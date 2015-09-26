@@ -11,3 +11,7 @@ six
 # These are forks of Google's libraries, which contain various fixes and patches
 #git+https://github.com/potatolondon/appengine-pipelines.git
 #git+https://github.com/potatolondon/potato-mapreduce.git#egg=mapreduce
+
+djangorestframework==3.2.4
+django-filter==0.11.0
+markdown==2.6.2
