@@ -1,5 +1,5 @@
 application: djangae-demo
-module: default
+module: djangaemoddemo
 version: 1
 runtime: python27
 api_version: 1
@@ -8,7 +8,7 @@ threadsafe: true
 handlers:
 
 - url: /_ah/(mapreduce|queue|warmup|internalupload).*
-  script: djangaedemo.wsgi.application
+  script: djangaemoddemo.wsgi.application
   login: admin
   secure: always
 
@@ -22,12 +22,12 @@ handlers:
 
 # Set Django admin to be login:admin as well as Django's is_staff restriction
 - url: /admin.*
-  script: djangaedemo.wsgi.application
+  script: djangaemoddemo.wsgi.application
   secure: always
   login: admin
 
 - url: /.*
-  script: djangaedemo.wsgi.application
+  script: djangaemoddemo.wsgi.application
   secure: always
 
 builtins:

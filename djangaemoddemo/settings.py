@@ -1,5 +1,5 @@
 """
-Django settings for djangaedemo project.
+Django settings for djangaemoddemo project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -44,8 +44,6 @@ INSTALLED_APPS = (
     'djangae.contrib.gauth.datastore',
     'djangae.contrib.security',
     # 'djangae.contrib.uniquetool',
-    'rest_framework',
-    'polls',
     'wheresettings',
 )
 
@@ -78,8 +76,8 @@ SECURE_CHECKS = [
     "djangosecure.check.djangosecure.check_sts",
     "djangosecure.check.djangosecure.check_frame_deny",
     "djangosecure.check.djangosecure.check_ssl_redirect",
-    "djangaedemo.checks.check_session_csrf_enabled",
-    "djangaedemo.checks.check_csp_is_not_report_only"
+    "djangaemoddemo.checks.check_session_csrf_enabled",
+    "djangaemoddemo.checks.check_csp_is_not_report_only"
 ]
 
 CSP_REPORT_URI = reverse_lazy('report_csp')
@@ -88,9 +86,9 @@ CSP_REPORTS_LOG_LEVEL = 'warning'
 CSP_REPORTS_SAVE = True
 CSP_REPORTS_EMAIL_ADMINS = False
 
-ROOT_URLCONF = 'djangaedemo.urls'
+ROOT_URLCONF = 'djangaemoddemo.urls'
 
-WSGI_APPLICATION = 'djangaedemo.wsgi.application'
+WSGI_APPLICATION = 'djangaemoddemo.wsgi.application'
 
 
 # Internationalization
@@ -126,12 +124,4 @@ CSP_IMG_SRC = ("'self'", "data:", "s.ytimg.com", "*.googleusercontent.com", "*.g
 CSP_CONNECT_SRC = ("'self'", "plus.google.com", "www.google-analytics.com")
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
-    'PAGE_SIZE': 10
-}
-
-DJANGAE_ADDITIONAL_MODULES = (os.path.join(BASE_DIR, 'djangaemoddemo.yaml'),)
-
 from djangae.contrib.gauth.settings import *
-
