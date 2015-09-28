@@ -131,7 +131,10 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
-DJANGAE_ADDITIONAL_MODULES = (os.path.join(BASE_DIR, 'djangaemoddemo.yaml'),)
+DJANGAE_ADDITIONAL_MODULES = (
+    os.path.join(BASE_DIR, 'djangaemoddemo.yaml'),
+    os.path.join(BASE_DIR, 'gomod', 'gomod.yaml'),
+)
 
 from djangae.contrib.gauth.settings import *
 
